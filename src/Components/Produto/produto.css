@@ -1,0 +1,48 @@
+.items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.item {
+  width: 25%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.item h2 {
+  width: 70%;
+}
+
+.item a {
+  text-decoration: none;
+}
+
+.item p {
+  font-size: 1.2rem;
+}
+
+.item img {
+  max-width: 50%;
+  max-height: 50%;
+  background-position: center;
+  background-size: contain;
+}
+
+.item button {
+  border: none;
+  border-radius: 4px;
+  padding: 20px;
+  cursor: pointer;
+  background-color: #ffa500;
+  color: #ffffff;
+  font-weight: bolder;
+  width: 60%;
+}
