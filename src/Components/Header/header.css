@@ -8,7 +8,14 @@ header {
   width: 100%;
   align-items: center;
   color: #fff;
+  border-bottom: 2px solid #ffa500;
 }
+
+header a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .icons {
   display: flex;
   gap: 20px;

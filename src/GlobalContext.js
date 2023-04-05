@@ -7,7 +7,7 @@ export const GlobalStorage = ({ children }) => {
   const [produto, setProduto] = useState(null);
   const [cart, setCart] = useState([]);
   const [modalCart, setModalCart] = useState(false);
-  console.log(cart);
+
   useEffect(() => {
     fetch(API)
       .then((response) => response.json())
@@ -16,7 +16,14 @@ export const GlobalStorage = ({ children }) => {
   }, []);
   return (
     <GlobalContext.Provider
-      value={{ produto, setProduto, cart, setCart, modalCart, setModalCart }}
+      value={{
+        produto,
+        setProduto,
+        cart,
+        setCart,
+        modalCart,
+        setModalCart,
+      }}
     >
       {children}
     </GlobalContext.Provider>

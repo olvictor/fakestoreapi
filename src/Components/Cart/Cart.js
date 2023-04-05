@@ -25,11 +25,10 @@ const Cart = () => {
       <AiOutlineClose onClick={() => global.setModalCart(false)} />
       {global.cart.map((produto) => (
         <div className="cart-item">
-          <img src={produto.image} />
+          <img src={produto.image} alt={produto.title} />
           <div style={{ marginLeft: "10px", width: "70%" }}>
             <h2>
-              {" "}
-              <a href="#">{produto.title}</a>
+              <a href="./">{produto.title}</a>
             </h2>
             <p>PRICE $: {produto.price}</p>
           </div>

@@ -8,22 +8,23 @@ const Header = () => {
   const global = useContext(GlobalContext);
   const API = "https://fakestoreapi.com/products/";
 
-  const handleChange = ({ target }) => {
-    const searchProduct = global.produto.filter((produto) =>
-      produto.title.toLowerCase().includes(target.value.toLowerCase())
-    );
-    if (target.value !== "") {
-      global.setProduto(searchProduct);
-    }
-    if (target.value === "") {
-      fetch(API)
-        .then((response) => response.json())
-        .then((produtos) => global.setProduto(produtos));
-    }
+  const handleChange = async ({ target }) => {
+    await fetch(API)
+      .then((response) => response.json())
+      .then((produto) =>
+        global.setProduto(
+          produto.filter((produto) =>
+            produto.title.toLowerCase().includes(target.value.toLowerCase())
+          )
+        )
+      );
   };
   return (
     <header>
-      <h1>FAKE STOREAPI</h1>
+      <h1>
+        {" "}
+        <a href="./">FAKE STOREAPI</a>
+      </h1>
       <div className="header__search">
         <input type="text" placeholder="Search" onChange={handleChange} />
         <button>

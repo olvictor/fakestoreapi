@@ -2,13 +2,12 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../../GlobalContext";
 import "./produto.css";
 import { BsCartPlusFill } from "react-icons/bs";
-
+import { FaStar } from "react-icons/fa";
 const Produto = () => {
   const global = useContext(GlobalContext);
   const addToCart = (produto) => {
     global.setCart([...global.cart, produto]);
   };
-  console.log(global.produto);
   if (global.produto !== null) {
     return (
       <div className="items">
@@ -19,6 +18,13 @@ const Produto = () => {
               <a href="./">{produto.title}</a>
             </h2>
             <img src={produto.image} alt={produto.title} />
+            <div className="rating">
+              {[...Array(+produto.rating.rate.toFixed(0))].map(
+                (star, index) => (
+                  <FaStar fill="#FFFF00" key={index} />
+                )
+              )}
+            </div>
             <p>$: {produto.price}</p>
             <button onClick={() => addToCart(produto)}>
               ADD TO CART <BsCartPlusFill />
