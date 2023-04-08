@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../GlobalContext";
+import Produto from "../Produto/Produto";
 import "./Filter.css";
 
-const Filter = () => {
+const Filter = ({ displayItems, setDisplayItems }) => {
   const Apicategory = "https://fakestoreapi.com/products/categories";
-  const API = "https://fakestoreapi.com/products/";
   const [categories, setCategories] = useState([]);
-
+  const [active, setActive] = useState("all");
   const global = useContext(GlobalContext);
 
   useEffect(() => {
@@ -15,27 +15,37 @@ const Filter = () => {
       .then((categorie) => setCategories(categorie));
   }, []);
 
-  const categorieSubmit = async (category) => {
-    if (category === null) {
-      fetch(API)
-        .then((reponse) => reponse.json())
-        .then((item) => global.setProduto(item));
-    } else {
-      await fetch(API)
-        .then((reponse) => reponse.json())
-        .then((item) =>
-          global.setProduto(item.filter((item) => item.category === category))
-        );
-    }
+  const categorieSubmit = (category) => {
+    const filter = global.produto.filter(
+      (produto) => produto.category === category
+    );
+
+    setActive(category);
+    setDisplayItems(filter);
   };
   return (
-    <div className="filter">
-      <button onClick={() => categorieSubmit(null)}>All</button>
-      {categories.map((categorie, index) => (
-        <button onClick={() => categorieSubmit(categorie)} key={index}>
-          {categorie}
+    <div>
+      <div className="filter">
+        <button
+          onClick={() => {
+            setActive("all");
+            setDisplayItems(global.produto);
+          }}
+          style={{ backgroundColor: active === "all" ? "orange" : null }}
+        >
+          All
         </button>
-      ))}
+        {categories.map((categorie, index) => (
+          <button
+            onClick={() => categorieSubmit(categorie)}
+            key={index}
+            style={{ backgroundColor: active === categorie ? "orange" : null }}
+          >
+            {categorie}
+          </button>
+        ))}
+      </div>
+      <Produto displayItems={displayItems} />;
     </div>
   );
 };

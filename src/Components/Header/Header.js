@@ -1,18 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./header.css";
 import { RxMagnifyingGlass } from "react-icons/rx";
 import { CiUser } from "react-icons/ci";
 import { BsFillCartFill } from "react-icons/bs";
 import { GlobalContext } from "../../GlobalContext";
-const Header = () => {
+
+const Header = ({ displayItems, setDisplayItems }) => {
   const global = useContext(GlobalContext);
   const API = "https://fakestoreapi.com/products/";
 
+  useEffect(() => {
+    setDisplayItems(global.produto);
+  }, [global.produto, setDisplayItems]);
   const handleChange = async ({ target }) => {
     await fetch(API)
       .then((response) => response.json())
       .then((produto) =>
-        global.setProduto(
+        setDisplayItems(
           produto.filter((produto) =>
             produto.title.toLowerCase().includes(target.value.toLowerCase())
           )

@@ -3,16 +3,17 @@ import { GlobalContext } from "../../GlobalContext";
 import "./produto.css";
 import { BsCartPlusFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
-const Produto = () => {
+const Produto = ({ productDisplay, displayItems }) => {
   const global = useContext(GlobalContext);
   const addToCart = (produto) => {
     global.setCart([...global.cart, produto]);
   };
-  if (global.produto !== null) {
+
+  if (displayItems) {
     return (
       <div className="items">
-        {global.produto.length < 1 && <h2>Nenhum Produto Foi Encontrado.</h2>}
-        {global.produto.map((produto) => (
+        {displayItems.length < 1 && <h2>Nenhum Produto Foi Encontrado.</h2>}
+        {displayItems.map((produto) => (
           <div className="item" key={produto.id}>
             <h2>
               <a href="./">{produto.title}</a>

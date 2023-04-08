@@ -11,7 +11,9 @@ export const GlobalStorage = ({ children }) => {
   useEffect(() => {
     fetch(API)
       .then((response) => response.json())
-      .then((produto) => setProduto(produto))
+      .then((produto) => {
+        setProduto(produto);
+      })
       .catch((err) => console.log(err));
   }, []);
   return (
