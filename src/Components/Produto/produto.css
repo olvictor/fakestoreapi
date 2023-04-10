@@ -7,6 +7,7 @@
   align-items: center;
   height: auto;
   margin-top: 50px;
+  position: relative;
 }
 
 .item {
@@ -20,6 +21,11 @@
   background-color: #f5f5dc;
   padding-bottom: 20px;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.item:hover {
+  opacity: 0.7;
 }
 
 .item h2 {

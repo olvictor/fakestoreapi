@@ -19,7 +19,7 @@ const Cart = () => {
   };
   return (
     <div
-      className="cart-store"
+      className="cart-store cartAnimate"
       style={global.modalCart ? { display: "block" } : { display: " none" }}
     >
       <AiOutlineClose onClick={() => global.setModalCart(false)} />

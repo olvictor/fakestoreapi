@@ -1,9 +1,9 @@
 import "./App.css";
-import { GlobalContext, GlobalStorage } from "./GlobalContext";
+import { GlobalStorage } from "./GlobalContext";
 import Header from "./Components/Header/Header";
 import Cart from "./Components/Cart/Cart";
 import Filter from "./Components/Filter/Filter";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [displayItems, setDisplayItems] = useState([]);

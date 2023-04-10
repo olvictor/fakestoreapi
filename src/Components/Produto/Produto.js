@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../GlobalContext";
 import "./produto.css";
 import { BsCartPlusFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
+import ModalItem from "../modaltem/ModalItem";
 const Produto = ({ productDisplay, displayItems }) => {
   const global = useContext(GlobalContext);
   const addToCart = (produto) => {
     global.setCart([...global.cart, produto]);
+  };
+  const [modalItem, setModalItem] = useState(null);
+  const [openModalItem, setOpenModalItem] = useState(false);
+
+  const submitModalItem = (produto) => {
+    setOpenModalItem(true);
+    setModalItem(produto);
   };
 
   if (displayItems) {
@@ -16,7 +24,9 @@ const Produto = ({ productDisplay, displayItems }) => {
         {displayItems.map((produto) => (
           <div className="item" key={produto.id}>
             <h2>
-              <a href="./">{produto.title}</a>
+              <a href="#" onClick={() => submitModalItem(produto)}>
+                {produto.title}
+              </a>
             </h2>
             <img src={produto.image} alt={produto.title} />
             <div className="rating">
@@ -32,6 +42,11 @@ const Produto = ({ productDisplay, displayItems }) => {
             </button>
           </div>
         ))}
+        <ModalItem
+          modalItem={modalItem}
+          openModalItem={openModalItem}
+          setOpenModalItem={setOpenModalItem}
+        />
       </div>
     );
   }
